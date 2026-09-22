@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>PULSE 青少年日常心理與人際研究 | 澳門大學</title>
+    <style>
+        /* ===== 全域重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* ===== 藍色系配色變數（澳門大學學術藍） ===== */
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2c5282;
+            --accent-teal: #2dd4bf;
+            --light-blue: #ebf8ff;
+            --bg-cream: #f7fafc;
+            --text-dark: #1a202c;
+            --text-gray: #4a5568;
+            --border-light: #e2e8f0;
+            --white: #ffffff;
+            --gold: #d69e2e;
+            --light-gold: #fef5e7;
+        }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans TC', sans-serif;
+            line-height: 1.9;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+            min-width: 1200px;
+            width: 1200px;
+            margin: 0 auto;
+            font-size: 17px; /* 基礎字號放大，提升手機可讀性 */
+        }
+        /* ===== 頂部導航欄 ===== */
+        .navbar {
+            background-color: var(--primary-blue);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .navbar-container {
+            width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .navbar-logo .pulse {
+            color: var(--accent-teal);
+        }
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .navbar-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .navbar-links a:hover {
+            color: var(--accent-teal);
+        }
+        /* ===== Hero 頭部區域 ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 3.5rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 50%, rgba(45,212,191,0.18) 0%, transparent 60%);
+        }
+        .hero-container {
+            width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .hero-content h1 .pulse {
+            color: var(--accent-teal);
+        }
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--accent-teal);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+        .hero-desc {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            margin-bottom: 1.8rem;
+            line-height: 1.9;
+        }
+        .hero-images {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+        .hero-img {
+            width: 46%;
+            max-width: 260px;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.2));
+        }
+        .hero-img:first-child {
+            transform: translateY(-15px);
+        }
+        .hero-img:last-child {
+            transform: translateY(15px);
+        }
+        /* ===== 通用區塊 ===== */
+        .container {
+            width: 1100px;
+            margin: 0 auto;
+            padding: 3.5rem 0;
+        }
+        .section {
+            margin-bottom: 3.5rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .section-title-underline {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-teal);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        .section-desc {
+            color: var(--text-gray);
+            font-size: 1.02rem;
+            margin-top: 1rem;
+            width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* ===== 研究目的區塊 ===== */
+        .purpose-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.8rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .purpose-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 2.8rem;
+            align-items: center;
+        }
+        .purpose-text h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .purpose-text p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.9;
+        }
+        .purpose-wave {
+            width: 100%;
+            border-radius: 12px;
+            background: var(--light-blue);
+            padding: 1.8rem;
+            text-align: center;
+        }
+        .purpose-wave img {
+            width: 100%;
+            height: auto;
+        }
+        .purpose-wave p {
+            text-align: center;
+            color: var(--secondary-blue);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+        /* ===== 參與內容及獎勵 ===== */
+        .content-rewards-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.8rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        /* 參與三階段 */
+        .participation-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+        .participation-step {
+            background: linear-gradient(135deg, var(--light-blue) 0%, #e6fffa 100%);
+            border-radius: 12px;
+            padding: 1.6rem;
+            text-align: center;
+            border-top: 4px solid var(--accent-teal);
+        }
+        .participation-step .step-num {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            line-height: 36px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+        }
+        .participation-step h4 {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .participation-step p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+        .participation-step .time-tag {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.25rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            margin-top: 0.7rem;
+            font-weight: 600;
+        }
+        /* 插畫展示區 */
+        .illustration-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-cream);
+            border-radius: 12px;
+        }
+        .illustration-item {
+            text-align: center;
+        }
+        .illustration-item img {
+            width: 140px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+        }
+        .illustration-item p {
+            color: var(--secondary-blue);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        /* 獎勵階梯標題 */
+        .rewards-title {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.3rem;
+            padding-top: 1rem;
+            border-top: 2px dashed var(--border-light);
+        }
+        /* 獎勵階梯卡片 */
+        .rewards-ladder {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 850px;
+            margin: 0 auto;
+        }
+        .reward-tier {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--white);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.1rem 1.3rem;
+            transition: all 0.3s;
+        }
+        .reward-tier:hover {
+            border-color: var(--accent-teal);
+            box-shadow: 0 4px 15px rgba(45,212,191,0.15);
+            transform: translateY(-3px);
+        }
+        .reward-tier.tier-gold {
+            background: linear-gradient(135deg, var(--light-gold) 0%, #fffaf0 100%);
+            border-color: var(--gold);
+        }
+        .reward-tier-icon {
+            font-size: 1.9rem;
+            min-width: 45px;
+            text-align: center;
+        }
+        .reward-tier-content {
+            flex: 1;
+        }
+        .reward-tier-condition {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .reward-tier-prize {
+            color: var(--text-gray);
+            font-size: 0.92rem;
+        }
+        .reward-tier-prize strong {
+            color: var(--gold);
+        }
+        /* 額外獎勵 */
+        .bonus-reward {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            text-align: center;
+            padding: 1.3rem;
+        }
+        .bonus-reward .reward-tier-condition {
+            color: var(--accent-teal);
+            font-size: 1.1rem;
+        }
+        .bonus-reward .reward-tier-prize {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+        .bonus-reward .reward-tier-prize strong {
+            color: #fbd38d;
+            font-size: 1.1rem;
+        }
+        /* 流程圖 */
+        .flow-image-container {
+            text-align: center;
+            margin-top: 2.2rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border-light);
+        }
+        .flow-image {
+            width: 700px;
+            height: auto;
+        }
+        .flow-caption {
+            color: var(--secondary-blue);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+        /* ===== 如何參與 ===== */
+        .join-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            position: relative;
+        }
+        .join-step {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            position: relative;
+        }
+        .join-step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+        }
+        .join-step h3 {
+            color: var(--primary-blue);
+            font-size: 1.15rem;
+            margin: 0.8rem 0 0.7rem;
+            text-align: center;
+        }
+        .join-step p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            text-align: center;
+            line-height: 1.8;
+        }
+        /* ===== 常見問題 FAQ ===== */
+        .faq-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.8rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .faq-item {
+            margin-bottom: 1.6rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .faq-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .faq-question {
+            color: var(--primary-blue);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+        .faq-answer {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+        .faq-answer ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .faq-answer li {
+            margin-bottom: 0.35rem;
+        }
+        /* ===== 頁尾 ===== */
+        .footer {
+            background: #1a202c;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: var(--accent-teal);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== 導航欄 ===== -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <span class="pulse">PULSE</span> 青少年研究
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#purpose">研究目的</a></li>
+                <li><a href="#content">參與內容及獎勵</a></li>
+                <li><a href="#join">如何參與</a></li>
+                <li><a href="#faq">常見問題</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== Hero 頭部 ===== -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1><span class="pulse">PULSE</span><br>青少年日常心理與人際研究</h1>
+                <p class="hero-subtitle">了解你的日常生活，幫助青少年健康成長</p>
+                <p class="hero-desc">
+                    本研究是一項每日生活日誌研究，透過連續多天了解青少年的日常生活經歷，
+                    探討這些經歷如何每天發生變化，以及這些變化與青少年心理健康的關係。
+                </p>
+            </div>
+            <div class="hero-images">
+                <img src="images/boy1.png" alt="男生使用手機" class="hero-img">
+                <img src="images/girl1.png" alt="女生使用手機" class="hero-img">
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 主內容 ===== -->
+    <main class="container">
+        <!-- ===== 研究目的 ===== -->
+        <section id="purpose" class="section">
+            <div class="section-header">
+                <h2 class="section-title">研究目的</h2>
+                <div class="section-title-underline"></div>
+            </div>
+            <div class="purpose-section">
+                <div class="purpose-grid">
+                    <div class="purpose-text">
+                        <h3>了解青少年的日常生活與心理健康</h3>
+                        <p>
+                            本研究致力於追蹤青少年的情緒變化、家庭與朋友互動，
+                            協助促進青少年的心理健康與全面成長。
+                        </p>
+                        <p>
+                            我們希望了解青少年的<strong>日常生活、情緒、家人與人際關係、
+                            心理健康、學業表現</strong>之間的關係，從而為青少年心理健康
+                            研究提供寶貴的數據支持。
+                        </p>
+                        <p>
+                            你的參與將推動心理健康研究的發展，幫助更多青少年健康成長。
+                        </p>
+                    </div>
+                    <div class="purpose-wave">
+                        <img src="images/wave.png" alt="情緒波動示意圖">
+                        <p>透過每日追蹤，了解情緒與人際關係的動態變化</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 參與內容及獎勵 ===== -->
+        <section id="content" class="section">
+            <div class="section-header">
+                <h2 class="section-title">參與內容及獎勵</h2>
+                <div class="section-title-underline"></div>
+                <p class="section-desc">整個研究分為三個階段，完成不同比例的問卷可獲得對應獎勵</p>
+            </div>
+            <div class="content-rewards-section">
+                <!-- 參與三階段 -->
+                <div class="participation-steps">
+                    <div class="participation-step">
+                        <div class="step-num">1</div>
+                        <h4>完成第一份問卷</h4>
+                        <p>了解你的基本情況與背景資料</p>
+                        <span class="time-tag">⏱ 約30分鐘</span>
+                    </div>
+                    <div class="participation-step">
+                        <div class="step-num">2</div>
+                        <h4>完成每日問卷</h4>
+                        <p>連續21天，每天記錄日常生活與情緒狀態</p>
+                        <span class="time-tag">⏱ 每天約5分鐘</span>
+                    </div>
+                    <div class="participation-step">
+                        <div class="step-num">3</div>
+                        <h4>完成跟進問卷</h4>
+                        <p>6個月後了解你的長期變化</p>
+                        <span class="time-tag">⏱ 約30分鐘</span>
+                    </div>
+                </div>
+
+                <!-- 插畫展示 -->
+                <div class="illustration-row">
+                    <div class="illustration-item">
+                        <img src="images/boy2.png" alt="男生參與研究">
+                        <p>每天5分鐘，記錄生活</p>
+                    </div>
+                    <div class="illustration-item">
+                        <img src="images/girl2.png" alt="女生思考">
+                        <p>了解情緒，促進成長</p>
+                    </div>
+                </div>
+
+                <!-- 獎勵階梯 -->
+                <h3 class="rewards-title">🎁 獎勵機制（按每日問卷完成比例）</h3>
+                <div class="rewards-ladder">
+                    <div class="reward-tier">
+                        <div class="reward-tier-icon">🎟️</div>
+                        <div class="reward-tier-content">
+                            <div class="reward-tier-condition">完成至少60%（13份）的每日問卷</div>
+                            <div class="reward-tier-prize">獲得 <strong>抽獎機會1次</strong></div>
+                        </div>
+                    </div>
+                    <div class="reward-tier">
+                        <div class="reward-tier-icon">📜🎟️</div>
+                        <div class="reward-tier-content">
+                            <div class="reward-tier-condition">完成至少80%（17份）的每日問卷</div>
+                            <div class="reward-tier-prize">將獲發 <strong>研究完成證書</strong> + <strong>抽獎機會1次</strong></div>
+                        </div>
+                    </div>
+                    <div class="reward-tier">
+                        <div class="reward-tier-icon">📜🎟️🎟️</div>
+                        <div class="reward-tier-content">
+                            <div class="reward-tier-condition">完成至少90%（19份）的每日問卷</div>
+                            <div class="reward-tier-prize">將獲發 <strong>研究完成證書</strong> + <strong>抽獎機會2次</strong></div>
+                        </div>
+                    </div>
+                    <div class="reward-tier tier-gold">
+                        <div class="reward-tier-icon">📜🎟️🎟️🎟️</div>
+                        <div class="reward-tier-content">
+                            <div class="reward-tier-condition">完成100%（共21份）的每日問卷</div>
+                            <div class="reward-tier-prize">將獲發 <strong>研究完成證書</strong> + <strong>抽獎機會3次</strong></div>
+                        </div>
+                    </div>
+                    <div class="reward-tier bonus-reward">
+                        <div class="reward-tier-icon">🛒</div>
+                        <div class="reward-tier-content">
+                            <div class="reward-tier-condition">完成約6個月後的跟進問卷（約30分鐘）</div>
+                            <div class="reward-tier-prize">將額外獲得 <strong>超級市場禮券</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 流程圖 -->
+                <div class="flow-image-container">
+                    <img src="images/flow.png" alt="研究流程圖" class="flow-image">
+                    <p class="flow-caption">研究流程：手機問卷 → 關注心理健康 → 人際互動 → 數據分析與成長</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 如何參與 ===== -->
+        <section id="join" class="section">
+            <div class="section-header">
+                <h2 class="section-title">如何參與研究</h2>
+                <div class="section-title-underline"></div>
+                <p class="section-desc">只需簡單三步，即可開啟你的研究參與之旅</p>
+            </div>
+            <div class="join-steps">
+                <div class="join-step">
+                    <div class="join-step-number">1</div>
+                    <h3>青少年登記參與意向</h3>
+                    <p>提供個人、家長或者監護人聯絡資料，表達參與意願。</p>
+                </div>
+                <div class="join-step">
+                    <div class="join-step-number">2</div>
+                    <h3>得到家長的許可</h3>
+                    <p>研究員聯絡家長或者監護人，介紹研究以詢問是否許可。</p>
+                </div>
+                <div class="join-step">
+                    <div class="join-step-number">3</div>
+                    <h3>參與研究</h3>
+                    <p>得到家長或者監護人的許可後，正式參與研究，開始每日問卷。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 常見問題 FAQ ===== -->
+        <section id="faq" class="section">
+            <div class="section-header">
+                <h2 class="section-title">常見問題 FAQ</h2>
+                <div class="section-title-underline"></div>
+                <p class="section-desc">以下是參與者最常詢問的問題，如有其他疑問可聯絡研究團隊</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">誰可以參與這項研究？</div>
+                    <div class="faq-answer">
+                        本研究邀請就讀於參與學校的中學生參與。年滿18歲者可自行閱讀知情同意書並決定參與；未滿18歲者需先取得家長或法定監護人的同意，再經本人簽署參與同意書後方可正式加入。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">參與整個研究需要花多長時間？</div>
+                    <div class="faq-answer">
+                        研究總共分為三個階段：
+                        <ul>
+                            <li>基礎問卷：首次填寫，約30分鐘</li>
+                            <li>每日問卷：連續21天，每天晚上發送，每份約5分鐘</li>
+                            <li>跟進問卷：6個月後邀請填寫，約30分鐘</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我可以中途退出研究嗎？</div>
+                    <div class="faq-answer">
+                        可以。參與本研究完全出於自願，你可隨時選擇退出，不會因此受到任何懲罰或負面影響，也不會影響你與學校的關係。退出前已收集的資料將繼續保留並用於本研究分析。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我的個人資料會被保密嗎？</div>
+                    <div class="faq-answer">
+                        所有研究資料將以參與者編號而非姓名儲存，個人聯絡資料與問卷答案會分開存放，僅獲授權的研究團隊成員可查閱。研究結果將以無法識別個人身分的彙整形式發表，絕對不會公開個人資訊。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">每日問卷一定要當天同一時間填寫嗎？</div>
+                    <div class="faq-answer">
+                        每日問卷統一於晚上發送，你可在當天方便的時間完成即可，無需嚴格固定同一時間。建議盡量在就寢前完成，以確保當天記憶與感受的準確性。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">錯過了當天的每日問卷怎麼辦？</div>
+                    <div class="faq-answer">
+                        若不慎錯過當天問卷，仍可繼續參與後續的每日問卷，不影響整體參與資格。最終獎勵與證書將依21天的整體完成比例計算。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">研究獎勵如何計算與發放？</div>
+                    <div class="faq-answer">
+                        獎勵依每日問卷完成比例發放：
+                        <ul>
+                            <li>完成至少60%（13份）：抽獎機會1次</li>
+                            <li>完成至少80%（17份）：研究完成證書 + 抽獎機會1次</li>
+                            <li>完成至少90%（19份）：研究完成證書 + 抽獎機會2次</li>
+                            <li>完成全部21份：研究完成證書 + 抽獎機會3次</li>
+                            <li>完成6個月跟進問卷：額外獲得超級市場禮券</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">收不到研究郵件、被歸類為垃圾郵件怎麼辦？</div>
+                    <div class="faq-answer">
+                        建議先檢查垃圾郵件匣，並將研究團隊郵件地址 hiowamak@um.edu.mo 加入聯絡人或白名單。若仍無法順利收取，可於辦公時間致電 8822 4339 聯絡研究團隊協助處理。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">未滿18歲與滿18歲的參與流程有什麼不同？</div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>年滿18歲</strong>：可自行閱讀知情同意書並決定是否參與，無需家長或監護人同意</li>
+                            <li><strong>未滿18歲</strong>：需先由家長/監護人簽署家長同意書，再由本人簽署青少年參與同意書，雙方皆同意後才正式納入研究</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">研究結果會對外公開嗎？</div>
+                    <div class="faq-answer">
+                        研究成果可能於學術會議、同行評審期刊發表，或與參與學校分享整體發現，但所有公開內容均以群體數據呈現，絕對不會識別或透露個別參與者的身分。
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== 頁尾 ===== -->
+    <footer class="footer">
+        <p>© 2026 PULSE 青少年日常心理與人際研究 | 澳門大學社會科學學院</p>
+        <p style="margin-top: 0.5rem; font-size: 0.82rem;">
+            本研究已獲澳門大學研究倫理委員會批准 | 研究負責人：麥曉華博士
+        </p>
+    </footer>
+</body>
+</html>
